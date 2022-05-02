@@ -8,12 +8,11 @@ class ClanStat {
 	}
 	
 	createTable(){
-		var datatable_columns = [];
-		table_header.forEach(h=>datatable_columns.push({title:h}));
-			$('#clanstat_table').DataTable( {
+		$('#clanstat_table').DataTable( {
+			responsive: true,
 			data: table_data,
-			columns: datatable_columns,
-			order: [[ datatable_columns.length-1, "desc" ]],
+			columns: table_header,
+			order: [[ table_header.length-1, "desc" ]],
 			pageLength: 50,
 			dom:'ft',
 		} );
