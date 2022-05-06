@@ -35,12 +35,13 @@ class ClanStat {
 		  am5themes_Animated.new(root)
 		]);
 		var chart = root.container.children.push(am5xy.XYChart.new(root, {
-		  panX: true,
-		  panY: true,
-		  wheelX: "panX",
-		  wheelY: "zoomX",
-		  maxTooltipDistance: 0,
-		  pinchZoomX:true
+			layout: root.verticalLayout,
+			panX: true,
+			panY: true,
+			wheelX: "panX",
+			wheelY: "zoomX",
+			maxTooltipDistance: 0,
+			pinchZoomX:true
 		}));
 
 		var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
@@ -67,7 +68,7 @@ class ClanStat {
 			legendValueText: "{valueY}",
 			tooltip: am5.Tooltip.new(root, {
 			  pointerOrientation: "horizontal",
-			  labelText: "{valueY}"
+			  labelText: u.name +": {valueY}"
 			})
 		  }));
 
@@ -81,22 +82,33 @@ class ClanStat {
 		cursor.lineY.set("visible", false);
 
 
-		chart.set("scrollbarX", am5.Scrollbar.new(root, {
+		/*chart.set("scrollbarX", am5.Scrollbar.new(root, {
 		  orientation: "horizontal"
 		}));
 
 		chart.set("scrollbarY", am5.Scrollbar.new(root, {
 		  orientation: "vertical"
+		}));*/
+
+
+		var legend = chart.children.push(am5.Legend.new(root, {
+			paddingTop: 15,
+			centerX: am5.percent(50),
+			  x: am5.percent(50),
+			  layout: am5.GridLayout.new(root, {
+				maxColumns: 6,
+				fixedWidthGrid: true
+			  }),
+			  height: am5.percent(30),
+			  verticalScrollbar: am5.Scrollbar.new(root, {
+				orientation: "vertical"
+			  })
 		}));
+		legend.labels.template.setAll({
+		  fontSize: 10,
+		});
 
-
-		var legend = chart.rightAxesContainer.children.push(am5.Legend.new(root, {
-		  width: 200,
-		  paddingLeft: 15,
-		  height: am5.percent(100)
-		}));
-
-		legend.itemContainers.template.events.on("pointerover", function(e) {
+		/*	legend.itemContainers.template.events.on("pointerover", function(e) {
 		  var itemContainer = e.target;
 		  var series = itemContainer.dataItem.dataContext;
 
@@ -128,10 +140,10 @@ class ClanStat {
 		})
 
 		legend.itemContainers.template.set("width", am5.p100);
-		legend.valueLabels.template.setAll({
+	legend.valueLabels.template.setAll({
 		  width: am5.p100,
 		  textAlign: "right"
-		});
+		});*/
 		
 		legend.data.setAll(chart.series.values);
 		chart.appear(1000, 100);
