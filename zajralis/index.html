@@ -13,6 +13,9 @@
  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/r-2.2.9/datatables.min.css"/>
  
 <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/r-2.2.9/datatables.min.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
@@ -35,8 +38,15 @@
   </head>
 <body>
 <div class="container">
-<h1><img src="img/zajralis.png" style="max-width:1.2em;" data-bs-toggle="modal" data-bs-target="#zajralis_modal"/> ЗАЖРАЛИСЬ</h2>
+<h1><img src="img/zajralis.png" style="max-width:1.2em;" data-bs-toggle="modal" data-bs-target="#zajralis_modal"/> ЗАЖРАЛИСЬ</h1>
 <table id="clanstat_table" class="table table-striped table-sm" width="100%"></table>
+<h2>История</h2>
+<h3>Мощь</h3>
+<div id="clan_members_power_chart"></div>
+<h3>Рейтинг</h3>
+<div id="clan_members_rating_chart"></div>
+<h3>Пожертвования</h3>
+<div id="clan_members_donations_chart"></div>
 <hr/>
 <div class="text-center">
 <div class="text-muted">Created by </div>

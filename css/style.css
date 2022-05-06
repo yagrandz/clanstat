@@ -1,0 +1,7 @@
+#clan_members_power_chart,
+#clan_members_rating_chart,
+#clan_members_donations_chart{
+	width: 100%;
+	height: 500px;
+	max-width: 100%;
+}
