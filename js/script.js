@@ -31,13 +31,19 @@ class ClanStat {
 	
 	createChart(id, data){
 		var root = am5.Root.new(id);
+		root.container.set({
+			paddingBottom:0,
+			paddingTop:0,
+			paddingLeft:0,
+			paddingRight:0,
+		})
 		root.setThemes([
 		  am5themes_Animated.new(root)
 		]);
 		var chart = root.container.children.push(am5xy.XYChart.new(root, {
 			layout: root.verticalLayout,
 			panX: true,
-			panY: true,
+			panY: false,
 			wheelX: "panX",
 			wheelY: "zoomX",
 			maxTooltipDistance: 0,
@@ -45,13 +51,14 @@ class ClanStat {
 		}));
 
 		var xAxis = chart.xAxes.push(am5xy.DateAxis.new(root, {
-		  maxDeviation: 0.2,
 		  baseInterval: {
 			timeUnit: "day",
 			count: 1
 		  },
 		  renderer: am5xy.AxisRendererX.new(root, {}),
-		  tooltip: am5.Tooltip.new(root, {})
+		  tooltip: am5.Tooltip.new(root, {}),
+		  groupData: true,
+		  groupCount: $(window).width()>500?500:20,
 		}));
 
 		var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
@@ -82,11 +89,11 @@ class ClanStat {
 		cursor.lineY.set("visible", false);
 
 
-		/*chart.set("scrollbarX", am5.Scrollbar.new(root, {
+		chart.set("scrollbarX", am5.Scrollbar.new(root, {
 		  orientation: "horizontal"
 		}));
 
-		chart.set("scrollbarY", am5.Scrollbar.new(root, {
+		/*chart.set("scrollbarY", am5.Scrollbar.new(root, {
 		  orientation: "vertical"
 		}));*/
 
@@ -99,13 +106,14 @@ class ClanStat {
 				maxColumns: 6,
 				fixedWidthGrid: true
 			  }),
-			  height: am5.percent(30),
+			  height: am5.percent(40),
+			  width: am5.percent(100),
 			  verticalScrollbar: am5.Scrollbar.new(root, {
 				orientation: "vertical"
 			  })
 		}));
 		legend.labels.template.setAll({
-		  fontSize: 10,
+		  fontSize: 12,
 		});
 
 		/*	legend.itemContainers.template.events.on("pointerover", function(e) {
