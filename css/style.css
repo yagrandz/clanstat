@@ -12,7 +12,7 @@
 
 .column-title{
 	position:relative;
-	display:block;
+	display:inline-block;
 	margin:0 auto;
 }
 
@@ -26,4 +26,11 @@
 	top:1px;
 	left:1px;
 	width: 13px;
+}
+
+.column-title .badge{
+	font-size: 6px;
+	position: absolute;
+	bottom: 0;
+	left: 0;
 }
