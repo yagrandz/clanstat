@@ -5,11 +5,12 @@ class ClanStat {
 		  .fail(function( jqxhr, settings, exception ) {
 			alert('Data load Error');
 		});
+		$('.chart_init_btn').click(this.onChatInitBtnClick.bind(this));
 	}
 	
 	onDataLoad(){
 		this.createTable();
-		this.createCharts();
+		//this.createCharts();
 	}
 	
 	createTable(){
@@ -27,6 +28,13 @@ class ClanStat {
 		this.createChart('clan_members_power_chart', chart_data.power);
 		this.createChart('clan_members_rating_chart', chart_data.rating);
 		this.createChart('clan_members_donations_chart', chart_data.donations);
+	}
+	
+	onChatInitBtnClick(e){
+		var btn = $(e.currentTarget);
+		btn.slideUp();
+		$('#clan_members_'+btn.data('id')+'_chart').show();
+		this.createChart('clan_members_'+btn.data('id')+'_chart', chart_data[btn.data('id')]);
 	}
 	
 	createChart(id, data){
