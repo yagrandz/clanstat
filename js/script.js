@@ -10,7 +10,53 @@ class ClanStat {
 	
 	onDataLoad(){
 		this.createTable();
+		this.renderChestBar();
 		//this.createCharts();
+	}
+	
+	renderChestBar(){
+		var chests = [20000,
+					50000,
+					100000,
+					200000,
+					300000,
+					600000,
+					900000,
+					1500000,],
+			chest_max =chests[chests.length-1],
+			ghost_bars = [],
+			bars = [],
+			clan_keys = clan_data.keys,
+			clan_keys_predict = clan_data.keys_predict,
+			last_ghost_bar_width = 0;
+		chests.forEach((chest, chest_index)=>{
+			let ghost_bar = $('<div role="progressbar"></div>');
+			ghost_bar.addClass('progress-bar chest-ghost-bar chest-bg-'+(chest_index+1));
+			var ghost_bar_width = Math.round((chest-(chests[chest_index-1]?chests[chest_index-1]:0))/chest_max*100,2);
+			ghost_bar.css({width:ghost_bar_width+'%', left:last_ghost_bar_width+'%'});
+			last_ghost_bar_width += ghost_bar_width;
+			ghost_bar.html(chest_index+1);
+			ghost_bars.push(ghost_bar);
+			let bar = $('<div role="progressbar"></div>');
+			bar.addClass('progress-bar chest-bg-'+(chest_index+1));
+			bar.html(chest_index+1);
+			if(chest<clan_keys){
+				bar.css({width: Math.round((chest-(chests[chest_index-1]?chests[chest_index-1]:0))/chest_max*100,2)+'%'});
+			}else{
+				bar.css({width: Math.round((clan_keys-(chests[chest_index-1]?chests[chest_index-1]:0))/chest_max*100,2)+'%'});
+			}
+			bars.push(bar);
+		});
+		$('#clanstat_chest_bar').append(ghost_bars);
+		let ghost_bar_predict = $('<div role="progressbar"></div>');
+		ghost_bar_predict.addClass('progress-bar chest-ghost-bar chest-bg-predict progress-bar-striped progress-bar-animated');
+		ghost_bar_predict.css({width:Math.round(clan_keys_predict/chest_max*100,2)+'%',});
+		$('#clanstat_chest_bar').append(ghost_bar_predict);
+		$('#clanstat_chest_bar').append(bars);
+		$('#clanstat_chest_keys').html(clan_data.keys);
+		$('#clanstat_chest_keys_pd').html(clan_data.keys_pd);
+		$('#clanstat_chest_keys_predict').html(clan_data.keys_predict);
+		
 	}
 	
 	createTable(){
