@@ -44,6 +44,7 @@ class ClanStat {
 				bar.css({width: Math.round((chest-(chests[chest_index-1]?chests[chest_index-1]:0))/chest_max*100,2)+'%'});
 			}else{
 				bar.css({width: Math.round((clan_keys-(chests[chest_index-1]?chests[chest_index-1]:0))/chest_max*100,2)+'%'});
+				bar.addClass('progress-bar-striped progress-bar-animated');
 			}
 			bars.push(bar);
 		});
