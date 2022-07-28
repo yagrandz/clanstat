@@ -57,7 +57,7 @@ class ClanStat {
 		$('#clanstat_chest_keys').html(clan_data.keys);
 		$('#clanstat_chest_keys_pd').html(clan_data.keys_pd);
 		if(clan_data.keys_pd<clan_data.keys_pd_need){
-			$('#clanstat_chest_keys_pd_need').html('&nbsp;('+Math.round(clan_data.keys_pd_need-clan_data.keys_pd)+')');
+			$('#clanstat_chest_keys_pd_need').html('&nbsp;('+Math.round(clan_data.keys_pd-clan_data.keys_pd_need)+')');
 			$('#clanstat_chest_keys_pd').addClass('text-danger');
 			$('#clanstat_chest_keys_pd_need').addClass('text-danger');
 		}else{
