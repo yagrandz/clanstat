@@ -56,6 +56,7 @@ class ClanStat {
 		$('#clanstat_chest_bar').append(bars);
 		$('#clanstat_chest_keys').html(clan_data.keys);
 		$('#clanstat_chest_keys_pd').html(clan_data.keys_pd);
+		$('#clanstat_chest_keys_last_day').html(clan_data.day_keys_summ);
 		if(clan_data.keys_pd<clan_data.keys_pd_need){
 			$('#clanstat_chest_keys_pd_need').html('('+Math.round(clan_data.keys_pd-clan_data.keys_pd_need)+')');
 			$('#clanstat_chest_keys_pd').addClass('text-danger');
